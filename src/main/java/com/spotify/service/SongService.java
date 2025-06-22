@@ -34,5 +34,21 @@ public class SongService {
     public List<Song> searchByArtist(String artist) {
         return repo.findByArtistContainingIgnoreCase(artist);
     }
+    
+ // 💗 Toggle like/unlike by ID
+    public Song toggleLike(Long id) {
+        Song song = repo.findById(id).orElse(null);
+        if (song != null) {
+            song.setLiked(!song.isLiked()); // Toggle liked flag
+            return repo.save(song);
+        }
+        return null;
+    }
+
+    // 🧡 Get all liked songs
+    public List<Song> getLikedSongs() {
+        return repo.findByLikedTrue();
+    }
+
 
 }
