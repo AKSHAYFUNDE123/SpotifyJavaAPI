@@ -34,4 +34,10 @@ public class PlaylistController {
     public void delete(@PathVariable Long id) {
         service.deletePlaylist(id);
     }
+
+    @GetMapping("/search")
+    public List<Playlist> searchByName(@RequestParam String name) {
+        return service.searchByName(name);
+    }
+
 }

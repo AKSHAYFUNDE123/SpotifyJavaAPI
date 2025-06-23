@@ -17,12 +17,19 @@ public class Song {
     private String album;
     private String url;
 
+    
+    
+    private boolean liked; // 💗 for like/unlike
+
+    
     // Default constructor
     public Song() {
         super();
     }
 
-    // Getters and Setters
+   
+
+	// Getters and Setters
     public Long getId() {
         return id;
     }
@@ -62,4 +69,13 @@ public class Song {
     public void setUrl(String url) {
         this.url = url;
     }
+    
+    
+    public boolean isLiked() {
+		return liked;
+	}
+
+	public void setLiked(boolean liked) {
+		this.liked = liked;
+	}
 }

@@ -1,6 +1,5 @@
 package com.spotify.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +29,11 @@ public class PlaylistService {
     public void deletePlaylist(Long id) {
         repo.deleteById(id);
     }
-}
+    
+    public List<Playlist> searchByName(String name) {
+        return repo.findByNameContainingIgnoreCase(name);
+    }
 
+
+   
+}
