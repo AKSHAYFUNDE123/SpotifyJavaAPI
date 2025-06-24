@@ -1,5 +1,7 @@
 package com.spotify.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @Column(unique = true, nullable = false)
     private String username;
 
@@ -17,7 +20,7 @@ public class User {
 
     private String password;
 
-    private String role = "ROLE_USER";  // default role
+    private String role = "USER";  // default role
 
     // 👉 Default Constructor
     public User() {
