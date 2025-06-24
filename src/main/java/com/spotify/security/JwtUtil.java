@@ -1,7 +1,8 @@
-package com.spotify.security;
+	package com.spotify.security;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -27,4 +28,15 @@ public class JwtUtil {
 	                .parseClaimsJws(token)
 	                .getBody();
 	    }
+	    
+	    public String extractUsername(String token) {
+	        return getClaims(token).getSubject();
+	    }
+
+	    public boolean validateToken(String token, UserDetails userDetails) {
+	        String username = extractUsername(token);
+	        return username.equals(userDetails.getUsername());
+	    }
+
 }
+
