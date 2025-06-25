@@ -17,19 +17,17 @@ public class Song {
     private String album;
     private String url;
 
-    
-    
+    private String duration;  // ✅ Added
+    private String genre;     // ✅ Added
+
     private boolean liked; // 💗 for like/unlike
 
-    
     // Default constructor
     public Song() {
         super();
     }
 
-   
-
-	// Getters and Setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -69,13 +67,28 @@ public class Song {
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    
-    public boolean isLiked() {
-		return liked;
-	}
 
-	public void setLiked(boolean liked) {
-		this.liked = liked;
-	}
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }

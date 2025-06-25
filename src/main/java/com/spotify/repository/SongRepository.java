@@ -6,6 +6,7 @@ import com.spotify.model.Playlist;
 import com.spotify.model.Song;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
 
@@ -13,6 +14,9 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     List<Song> findByTitleContainingIgnoreCase(String title);
     List<Song> findByArtistContainingIgnoreCase(String artist);
     List<Song> findByLikedTrue();
+    List<Song> findByArtist(String artist);
+    
+
 
    
 

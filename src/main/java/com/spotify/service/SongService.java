@@ -1,6 +1,7 @@
 package com.spotify.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,41 @@ public class SongService {
     public List<Song> getLikedSongs() {
         return repo.findByLikedTrue();
     }
+   
+    
+ // Update All song By artist
+    public String updateAllSongsByArtist(String artist, Song updatedSong) {
+        List<Song> songs = repo.findByArtist(artist);
+        
+        if (songs.isEmpty()) {
+            return "❌ No songs found for artist: " + artist;
+        }
+
+        for (Song song : songs) {
+            song.setTitle(updatedSong.getTitle());
+            song.setAlbum(updatedSong.getAlbum());
+            song.setUrl(updatedSong.getUrl());
+            // Add more fields as needed
+        }
+
+        repo.saveAll(songs);
+        return "✅ Updated all songs by artist '" + artist + "'";
+    }
+
+   
+    // update song by id
+ 
+    public Optional<Song> updateSongById(Long id, Song updatedSong) {
+        return repo.findById(id).map(song -> {
+            song.setTitle(updatedSong.getTitle());
+            song.setArtist(updatedSong.getArtist());
+            song.setAlbum(updatedSong.getAlbum());
+            song.setUrl(updatedSong.getUrl());
+            return repo.save(song);
+        });
+    }
+
+
 
 
 }

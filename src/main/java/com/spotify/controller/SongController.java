@@ -3,6 +3,8 @@ package com.spotify.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,6 +63,34 @@ public class SongController {
 	public List<Song> getLikedSongs() {
 	    return service.getLikedSongs();
 	}
+	
+	
+	// get song by artist
+	
+	@PutMapping("/artist/{artist}")
+	public ResponseEntity<String> updateSongsByArtist(@PathVariable String artist, @RequestBody Song updatedSong) {
+	    String response = service.updateAllSongsByArtist(artist, updatedSong);
+	    return ResponseEntity.ok(response);
+	}
+
+	// update song by id
+
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateSongById(@PathVariable Long id, @RequestBody Song updatedSong) {
+	    return service.updateSongById(id, updatedSong)
+	        .map(song -> ResponseEntity.ok("✅ Song updated successfully!"))
+	        .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("❌ Song not found!"));
+	}
+
+
+	
+	
+	
+	
+
+	
+	
+	
 
 
 
