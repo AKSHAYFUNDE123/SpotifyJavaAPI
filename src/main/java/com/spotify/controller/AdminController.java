@@ -53,6 +53,21 @@ public class AdminController {
     }
     
     
+    // 🗑️ DELETE user by userName
+
+
+    @DeleteMapping("/users/username/{username}")
+    public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
+        if (userRepo.existsByUsername(username)) {
+            userRepo.deleteByUsername(username);
+            return ResponseEntity.ok("✅ User deleted successfully!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("❌ User not found!");
+        }
+    }
+
+
+    
     // Update role from Admin 
     
     @PutMapping("/users/{id}/role")
@@ -87,8 +102,8 @@ public class AdminController {
     }
 
 
-
     
+    // Get User by UserName
     @GetMapping("/username/{username}")
     public ResponseEntity<Object> getUserByUsername(@PathVariable String username) {
         Optional<User> userOpt = userRepo.findByUsername(username);
